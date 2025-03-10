@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot OBS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Fundo escuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: #222; /* Fundo do container */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #bbb; /* Cor do subtítulo */
+            margin-bottom: 10px; /* Espaço abaixo do subtítulo */
+            font-weight: normal;
+        }
+
+        h1 {
+            color: #fff; /* Cor do título */
+            margin-bottom: 20px; /* Espaço abaixo do título */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #fff; /* Cor do texto do label */
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #444; /* Borda do input */
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #555; /* Fundo do input */
+            color: #fff; /* Cor do texto do input */
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #28a745; /* Cor da borda ao focar */
+            outline: none;
+        }
+
+        button {
+            background-color: #28a745; /* Cor do botão */
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838; /* Cor do botão ao passar o mouse */
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Seja bem vindo ao</h1>
+        <h1>Bot Live</h1>
+        <form method="post">
+            <label for="url">URL da Live:</label>
+            <input type="text" id="url" name="url" placeholder="Digite a URL da live" required>
+            <button type="submit">Iniciar</button>
+        </form>
+    </div>
+</body>
+</html>
