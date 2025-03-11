@@ -24,32 +24,39 @@ def stop_recording():
 def open_youtube_live(url):
     webbrowser.open(url)
 
-def main(url):
+def main(url, duration):
     open_youtube_live(url)  # Abre a URL da live
+    
     while True:
         start_recording()  # Inicia a gravação
         print("Gravação iniciada.")
         
-        # Aguarda 30 minutos (em segundos)
-        time.sleep(10)  # Gravação de 30 minutos
+        # Aguarda a duração especificada (em segundos)
+        time.sleep(duration)
         
         stop_recording()  # Para a gravação
         print("Gravação parada.")
         
-        # Espera 1 milissegundo antes de reiniciar
-        time.sleep(0.001)  # Espera 1 milissegundo
-        
+        # Reinicia a gravação imediatamente após o tempo de gravação
         print("Reiniciando a gravação...")
 
-def run_bot(url):
-    main(url)
+       
+def run_bot(url, duration):
+    main(url, duration)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         url = request.form['url']
+        hours = int(request.form['hours'])  # Captura horas
+        minutes = int(request.form['minutes'])  # Captura minutos
+        seconds = int(request.form['seconds'])  # Captura segundos
+        
+        # Converte tudo para segundos
+        duration = hours * 3600 + minutes * 60 + seconds
+        
         # Iniciar o bot em uma nova thread
-        threading.Thread(target=run_bot, args=(url,)).start()
+        threading.Thread(target=run_bot, args=(url, duration)).start()
     return render_template('index.html')
 
 if __name__ == '__main__':
