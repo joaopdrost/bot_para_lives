@@ -3,7 +3,6 @@ from obswebsocket import obsws, requests
 from flask import Flask, render_template, request
 import threading
 import time
-import os  # Importar a biblioteca os
 
 app = Flask(__name__)
 
@@ -33,13 +32,15 @@ def split_record_file():
 
 def main(url, duration):
     open_youtube_live(url)  # Abre a URL da live
-    
+
+     # Abre a URL da live
     start_recording()  # Inicia a gravação
     print("Gravação iniciada.")
     while True:
+
         # Aguarda a duração especificada (em segundos)
         time.sleep(duration)
-        print("Dividindo a gravação em um novo arquivo")
+        print("Divindo a gravação em um novo arquivo")
         split_record_file()
 
 def run_bot(url, duration):
@@ -52,14 +53,13 @@ def index():
         hours = int(request.form['hours'])  # Captura horas
         minutes = int(request.form['minutes'])  # Captura minutos
         seconds = int(request.form['seconds'])  # Captura segundos
-        
+
         # Converte tudo para segundos
         duration = hours * 3600 + minutes * 60 + seconds
-        
+
         # Iniciar o bot em uma nova thread
         threading.Thread(target=run_bot, args=(url, duration)).start()
     return render_template('index.html')
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))  # Use a porta fornecida pelo Heroku ou 5000 localmente
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(debug=True)
