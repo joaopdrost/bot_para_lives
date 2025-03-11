@@ -24,21 +24,23 @@ def stop_recording():
 def open_youtube_live(url):
     webbrowser.open(url)
 
+def split_record_file():
+    ws.call(requests.StopRecording())
+    time.sleep(1)  # Aguarda um segundo antes de iniciar a nova gravação
+    ws.call(requests.StartRecording())
+    print("Gravação dividida.")
+
 def main(url, duration):
     open_youtube_live(url)  # Abre a URL da live
     
+     # Abre a URL da live
+    start_recording()  # Inicia a gravação
+    print("Gravação iniciada.")
     while True:
-        start_recording()  # Inicia a gravação
-        print("Gravação iniciada.")
-        
         # Aguarda a duração especificada (em segundos)
         time.sleep(duration)
-        
-        stop_recording()  # Para a gravação
-        print("Gravação parada.")
-        
-        # Reinicia a gravação imediatamente após o tempo de gravação
-        print("Reiniciando a gravação...")
+        print("Divindo a gravação em um novo arquivo")
+        split_record_file()
 
        
 def run_bot(url, duration):
